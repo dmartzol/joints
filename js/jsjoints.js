@@ -39,7 +39,7 @@ function buildDrawing() {
     return myDrawing;
 }
 
-function side() {
+function front() {
     // First the vertical lines
     // Vertical lines for the Grooves
     var vlineGroove = new makerjs.paths.Line([0, 0], [0, plan.grooveWidth]);
@@ -94,7 +94,7 @@ function side() {
     return model;
 }
 
-function front() {
+function side() {
     // First the vertical lines
     // Vertical lines for the Grooves
     var vlineGroove = new makerjs.paths.Line([0, 0], [0, plan.grooveWidth]);
@@ -134,10 +134,10 @@ function front() {
     // Moving to correct positions
     var t = 0;
     makerjs.model.moveRelative(modelLeft, [plan.tabLength + t, 0]);
-    makerjs.model.moveRelative(modelRight, [plan.width - plan.tabLength - t, 0]);
+    makerjs.model.moveRelative(modelRight, [plan.width - plan.tabLength - 2 * plan.thinWall - t, 0]);
 
     // Creating the box
-    var box = new makerjs.models.Rectangle(plan.width, plan.height);
+    var box = new makerjs.models.Rectangle(plan.width - 2 * plan.thinWall, plan.height);
 
     var model = {
         models: {
