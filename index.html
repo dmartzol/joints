@@ -29,70 +29,73 @@
 
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Exterior Dimensions</h6>
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-sm btn-secondary active"><input type="radio" name="options" id="option1" autocomplete="off" checked> Millimeters</label>
-            <label class="btn btn-sm btn-secondary"><input type="radio" name="options" id="option2" autocomplete="off"> Inches</label>
+            <label class="btn btn-sm btn-secondary active" onclick="toMillimeters()"><input type="radio" id="mm" autocomplete="off" checked> Millimeters</label>
+            <label class="btn btn-sm btn-secondary" onclick="toInches()"><input type="radio" id="inches" autocomplete="off"> Inches</label>
           </div>
 
           <form class="my-0 mx-2" id="form1">
             <label class="m-1" for="validationDefaultUsername">Width</label>
             <div class="input-group">
-              <input type="number" class="form-control" id="width" aria-describedby="inputGroupPrepend2" value="500" required>
+              <input type="text" class="form-control dimensional" id="width" value="800" required>
               <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend2">mm</span>
+                <span class="input-group-text">mm</span>
               </div>
             </div>
 
             <label class="m-1" for="validationDefaultUsername">Height</label>
             <div class="input-group">
-              <input type="number" class="form-control" id="height" aria-describedby="inputGroupPrepend2" value="300" required>
+              <input type="text" class="form-control dimensional" id="height" value="350" required>
               <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend2">mm</span>
+                <span class="input-group-text">mm</span>
               </div>
             </div>
 
             <label class="m-1" for="validationDefaultUsername">Depth</label>
             <div class="input-group">
-              <input type="number" class="form-control" id="depth" aria-describedby="inputGroupPrepend2" value="100" required>
+              <input type="text" class="form-control dimensional" id="depth" value="300" required>
               <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend2">mm</span>
+                <span class="input-group-text">mm</span>
               </div>
             </div>
             <label class="m-1" for="validationDefaultUsername">Thickness</label>
             <div class="input-group">
-              <input type="number" class="form-control" id="thickness" aria-describedby="inputGroupPrepend2" value="12" required>
+              <input type="text" class="form-control dimensional" id="thickness" value="12" required>
               <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend2">mm</span>
+                <span class="input-group-text">mm</span>
               </div>
             </div>
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Customizations</h6>
             <label class="m-1" for="validationDefaultUsername">Tabs count</label>
             <div class="input-group">
-              <input type="number" class="form-control" id="fingers" aria-describedby="inputGroupPrepend2" value="3" required>
+              <input type="text" class="form-control" id="fingers" aria-describedby="inputGroupPrepend2" value="3" required>
               <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend2">mm</span>
+                <span class="input-group-text">mm</span>
               </div>
             </div>
             <label class="m-1" for="validationDefaultUsername">Bone Radius</label>
             <div class="input-group">
-              <input type="number" class="form-control" id="radius" aria-describedby="inputGroupPrepend2" value="2" required>
+              <input type="text" class="form-control dimensional" id="radius" aria-describedby="inputGroupPrepend2" value="2" required>
               <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend2">mm</span>
+                <span class="input-group-text">mm</span>
               </div>
             </div>
             <label class="m-1" for="validationDefaultUsername">Clearance</label>
             <div class="input-group">
-              <input type="text" class="form-control" id="clearance" aria-describedby="inputGroupPrepend2" value="0.01" required>
+              <input type="text" class="form-control dimensional" id="clearance" aria-describedby="inputGroupPrepend2" value="0.01" required>
               <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend2">mm</span>
+                <span class="input-group-text">mm</span>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary my-5" value="Draw">Draw</button>
+            <label class="m-1" for="validationDefaultUsername">Overlap fraction</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="overlap" aria-describedby="inputGroupPrepend2" value="0.25" required>
+            </div>
+            <button type="submit" class="btn btn-primary my-3" value="Draw">Draw</button>
           </form>
 
-
-          <div class="btn-group-vertical m-0 my-0">
-            <button type="button" class="btn" onclick="dxfDownload()">.DXF</button>
-            <button type="button" class="btn" onclick="svgDownload()">.SVG</button>
+          <div class="">
+            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="dxfDownload()">Download DXF</button>
+            <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="svgDownload()">Download SVG</button>
           </div>
         </div>
       </nav>

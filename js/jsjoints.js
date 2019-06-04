@@ -1,7 +1,6 @@
 var makerjs = require('makerjs');
 
-var plan = {
-};
+var currentUnits = "mm";
 
 addEventListener('submit', (evt) => {
     evt.preventDefault();
@@ -11,7 +10,7 @@ addEventListener('submit', (evt) => {
     plan.thickness = parseFloat(document.getElementById("thickness").value);
     plan.fingerCount = parseInt(document.getElementById("fingers").value);
     plan.clearance = parseFloat(document.getElementById("clearance").value);
-    plan.R = 0.25;
+    plan.R = parseFloat(document.getElementById("overlap").value);
     plan.tabLength = (1 - plan.R) * plan.thickness;
     plan.thinWall = plan.R * plan.thickness;
     plan.tongeWidth = plan.height / (2 * plan.fingerCount) - plan.clearance;
@@ -134,10 +133,10 @@ function side() {
     // Moving to correct positions
     var t = 0;
     makerjs.model.moveRelative(modelLeft, [plan.tabLength + t, 0]);
-    makerjs.model.moveRelative(modelRight, [plan.width - plan.tabLength - 2 * plan.thinWall - t, 0]);
+    makerjs.model.moveRelative(modelRight, [plan.depth - plan.tabLength - 2 * plan.thinWall - t, 0]);
 
     // Creating the box
-    var box = new makerjs.models.Rectangle(plan.width - 2 * plan.thinWall, plan.height);
+    var box = new makerjs.models.Rectangle(plan.depth - 2 * plan.thinWall, plan.height);
 
     var model = {
         models: {
@@ -170,4 +169,32 @@ function dxfDownload() {
     hiddenElement.target = '_blank';
     hiddenElement.download = 'test.dxf';
     hiddenElement.click();
+}
+
+function toMillimeters() {
+    var elements = document.getElementsByClassName("input-group-text");
+    for(var i=0; i<elements.length; i++) {
+        elements[i].innerHTML = "mm";
+    }
+    if (currentUnits == "in") {
+        elements = document.getElementsByClassName("dimensional");
+        for(var i=0; i<elements.length; i++) {
+            elements[i].value = elements[i].value * 25.4;
+        }
+        currentUnits = "mm";
+    }
+}
+
+function toInches() {
+    var elements = document.getElementsByClassName("input-group-text");
+    for(i=0; i<elements.length; i++) {
+        elements[i].innerHTML = "in";
+    }
+    if (currentUnits == "mm") {
+        elements = document.getElementsByClassName("dimensional");
+        for(var i=0; i<elements.length; i++) {
+            elements[i].value = elements[i].value / 25.4;
+        }
+        currentUnits = "in";
+    }
 }
