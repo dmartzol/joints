@@ -1,6 +1,7 @@
 var makerjs = require('makerjs');
 
 var currentUnits = "mm";
+var plan = {};
 
 addEventListener('submit', (evt) => {
     evt.preventDefault();
@@ -179,7 +180,8 @@ function toMillimeters() {
     if (currentUnits == "in") {
         elements = document.getElementsByClassName("dimensional");
         for(var i=0; i<elements.length; i++) {
-            elements[i].value = elements[i].value * 25.4;
+            var n = elements[i].value * 25.4;
+            elements[i].value = n.toFixed(3);
         }
         currentUnits = "mm";
     }
@@ -193,7 +195,8 @@ function toInches() {
     if (currentUnits == "mm") {
         elements = document.getElementsByClassName("dimensional");
         for(var i=0; i<elements.length; i++) {
-            elements[i].value = elements[i].value / 25.4;
+            var n = elements[i].value / 25.4;
+            elements[i].value = n.toFixed(3);
         }
         currentUnits = "in";
     }
