@@ -3,8 +3,14 @@ var makerjs = require('makerjs');
 var currentUnits = "mm";
 var plan = {};
 
+window.onload = canvasUpdate();
+
 addEventListener('submit', (evt) => {
     evt.preventDefault();
+    canvasUpdate();
+});
+
+function readInputs() {
     plan.width = parseFloat(document.getElementById("width").value);
     plan.height = parseFloat(document.getElementById("height").value);
     plan.depth = parseFloat(document.getElementById("depth").value);
@@ -17,10 +23,10 @@ addEventListener('submit', (evt) => {
     plan.tongeWidth = plan.height / (2 * plan.fingerCount) - plan.clearance;
     plan.grooveWidth = plan.tongeWidth + 2 * plan.clearance;
     plan.boneRadius = parseFloat(document.getElementById("radius").value);
-    canvasUpdate();
-});
+}
 
 function canvasUpdate() {
+    readInputs();
     var model = buildDrawing();
     var svg = makerjs.exporter.toSVG(model);
     document.getElementById('canvas').innerHTML = svg;
@@ -185,6 +191,7 @@ function toMillimeters() {
         }
         currentUnits = "mm";
     }
+    canvasUpdate();
 }
 
 function toInches() {
@@ -200,4 +207,5 @@ function toInches() {
         }
         currentUnits = "in";
     }
+    canvasUpdate();
 }
