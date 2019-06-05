@@ -2,9 +2,9 @@
 
 Small app to generate plans to build boxes with hidden box joints.
 
-[hidden]: https://github.com/dmartzol/joints/blob/master/images/Hidden.png "Hidden box joint"
+[hidden]: https://github.com/dmartzol/joints/blob/master/images/Hidden.jpg "Hidden box joint"
 
-[usual]: https://github.com/dmartzol/joints/blob/master/images/Ugly.png "Hidden box joint"
+[usual]: https://github.com/dmartzol/joints/blob/master/images/Ugly.jpg "Hidden box joint"
 
 Usual CNC Box Joint           |  Hidden CNC Box Joint
 :----------------------------:|:-----------------------------:
