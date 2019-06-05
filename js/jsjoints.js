@@ -27,6 +27,7 @@ function readInputs() {
 
 function canvasUpdate() {
     readInputs();
+    updateThickness();
     var model = buildDrawing();
     var svg = makerjs.exporter.toSVG(model);
     document.getElementById('canvas').innerHTML = svg;
@@ -208,4 +209,10 @@ function toInches() {
         currentUnits = "in";
     }
     canvasUpdate();
+}
+
+function updateThickness() {
+    var overlapThickness = plan.thickness * plan.R;
+    overlapThickness = overlapThickness.toFixed(2);
+    document.getElementById("overlap-thickness").innerHTML = overlapThickness;
 }

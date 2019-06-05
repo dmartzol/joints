@@ -74,22 +74,29 @@
             </div>
             <label class="m-1" for="validationDefaultUsername">Bone Radius</label>
             <div class="input-group">
-              <input type="text" class="form-control dimensional" id="radius" aria-describedby="inputGroupPrepend2" value="2" required>
+              <input type="text" class="form-control dimensional" id="radius" aria-describedby="inputGroupPrepend2" value="3.5" required>
               <div class="input-group-prepend">
                 <span class="input-group-text">mm</span>
               </div>
             </div>
+
             <label class="m-1" for="validationDefaultUsername">Clearance</label>
             <div class="input-group">
-              <input type="text" class="form-control dimensional" id="clearance" aria-describedby="inputGroupPrepend2" value="0.01" required>
+              <input type="text" class="form-control dimensional" id="clearance" aria-describedby="inputGroupPrepend2" value="0.5" required>
               <div class="input-group-prepend">
                 <span class="input-group-text">mm</span>
               </div>
             </div>
+
             <label class="m-1" for="validationDefaultUsername">Overlap fraction</label>
             <div class="input-group">
               <input type="text" class="form-control" id="overlap" aria-describedby="inputGroupPrepend2" value="0.25" required>
+              <div class="input-group-prepend">
+                  <span class="input-group-text" id="overlap-thickness">3</span>
+                  <span class="input-group-text">mm</span>
+              </div>
             </div>
+
             <button type="submit" class="btn btn-primary my-3" value="Draw">Draw</button>
           </form>
 
