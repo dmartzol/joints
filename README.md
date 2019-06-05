@@ -22,5 +22,6 @@ Just visit [this link](https://www.danielmartinezolivas.com/joints/) and input y
  ## TO DO
 
 - [X] Make it work
-- [ ] Usage
+- [X] Usage
 - [ ] Test it
+- [ ] Do something about units
