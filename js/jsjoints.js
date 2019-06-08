@@ -1,12 +1,18 @@
 var makerjs = require('makerjs');
-
 var currentUnits = "mm";
 var plan = {};
 
 window.onload = canvasUpdate();
-
 addEventListener('submit', (evt) => {
     evt.preventDefault();
+    canvasUpdate();
+});
+addEventListener('change', (evt) => {
+    // evt.preventDefault();
+    canvasUpdate();
+});
+addEventListener('keyup', (evt) => {
+    // evt.preventDefault();
     canvasUpdate();
 });
 

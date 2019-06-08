@@ -2,6 +2,12 @@ body {
   font-size: .875rem;
 }
 
+#blueprint-canvas {
+  background-color: #3177C6;
+  margin-bottom: 1em;
+  /* overflow: hidden; */
+}
+
 .feather {
   width: 16px;
   height: 16px;
