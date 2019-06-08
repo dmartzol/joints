@@ -30,7 +30,9 @@ function canvasUpdate() {
     updateThickness();
     var model = buildDrawing();
     var svg = makerjs.exporter.toSVG(model);
+    console.log(svg);
     document.getElementById('canvas').innerHTML = svg;
+    // document.getElementById('canvas').setAttribute("width", "100%");
 }
 
 function buildDrawing() {
@@ -80,7 +82,7 @@ function front() {
     var chain1 = makerjs.model.findSingleChain(modelLeft);
     var dogbones1 = makerjs.chain.dogbone(chain1, { right: plan.boneRadius});
     modelLeft.models.bones = dogbones1;
-    modelRight = makerjs.cloneObject(modelLeft);
+    var modelRight = makerjs.cloneObject(modelLeft);
     modelRight = makerjs.model.mirror(modelRight, true, false);
 
     // Moving to correct positions

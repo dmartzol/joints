@@ -24,4 +24,5 @@ Just visit [this link](https://www.danielmartinezolivas.com/joints/) and input y
 - [X] Make it work
 - [X] Usage
 - [ ] Test it
+- [ ] Fix canvas scaling
 - [ ] Do something about units
