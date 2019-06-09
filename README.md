@@ -25,4 +25,7 @@ Just visit [this link](https://www.danielmartinezolivas.com/joints/) and input y
 - [X] Usage
 - [X] Fix canvas scaling
 - [ ] Test it
+- [ ] Add title, text
+- [ ] Add credits
+- [ ] Add logo
 - [ ] Add reset button
