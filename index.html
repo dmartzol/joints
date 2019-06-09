@@ -6,126 +6,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Joints</title>
 
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
+  <!-- Spectre CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
   <link rel="stylesheet" href="css/mainstyle.css" type="text/css">
 </head>
 
 <body>
-
-  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Hidden box joints</a>
-    <ul class="navbar-nav px-3">
-      <li class="nav-item text-nowrap">
-        <a class="nav-link" href="#">About</a>
-      </li>
-    </ul>
-  </nav>
-
-  <div class="container-fluid">
-    <div class="row">
-      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-        <div class="sidebar-sticky">
-
-          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Exterior Dimensions</h6>
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-sm btn-secondary active" onclick="toMillimeters()"><input type="radio" id="mm" autocomplete="off" checked> Millimeters</label>
-            <label class="btn btn-sm btn-secondary" onclick="toInches()"><input type="radio" id="inches" autocomplete="off"> Inches</label>
-          </div>
-
-          <form class="my-0 mx-2" id="form1">
-            <label class="m-1" for="validationDefaultUsername">Width</label>
-            <div class="input-group">
-              <input type="number" step="any" min="0" class="form-control dimensional" id="width" value="800" required>
-              <div class="input-group-prepend">
-                <span class="input-group-text">mm</span>
-              </div>
-            </div>
-
-            <label class="m-1" for="validationDefaultUsername">Height</label>
-            <div class="input-group">
-              <input type="number" step="any" class="form-control dimensional" id="height" value="350" required>
-              <div class="input-group-prepend">
-                <span class="input-group-text">mm</span>
-              </div>
-            </div>
-
-            <label class="m-1" for="validationDefaultUsername">Depth</label>
-            <div class="input-group">
-              <input type="number" step="any" class="form-control dimensional" id="depth" value="300" required>
-              <div class="input-group-prepend">
-                <span class="input-group-text">mm</span>
-              </div>
-            </div>
-            <label class="m-1" for="validationDefaultUsername">Thickness</label>
-            <div class="input-group">
-              <input type="number" step="any" class="form-control dimensional" id="thickness" value="12" required>
-              <div class="input-group-prepend">
-                <span class="input-group-text">mm</span>
-              </div>
-            </div>
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Customizations</h6>
-            <label class="m-1" for="validationDefaultUsername">Tabs count</label>
-            <div class="input-group">
-              <input type="number" step="1" class="form-control" id="fingers" aria-describedby="inputGroupPrepend2" value="3" required>
-              <div class="input-group-prepend">
-                <span class="input-group-text">mm</span>
-              </div>
-            </div>
-            <label class="m-1" for="validationDefaultUsername">Bone Radius</label>
-            <div class="input-group">
-              <input type="number" step="0.001" class="form-control dimensional" id="radius" aria-describedby="inputGroupPrepend2" value="3.5" required>
-              <div class="input-group-prepend">
-                <span class="input-group-text">mm</span>
-              </div>
-            </div>
-
-            <label class="m-1" for="validationDefaultUsername">Clearance</label>
-            <div class="input-group">
-              <input type="number" step="0.001" min="0" max="1" class="form-control dimensional" id="clearance" aria-describedby="inputGroupPrepend2" value="0.05" required>
-              <div class="input-group-prepend">
-                <span class="input-group-text">mm</span>
-              </div>
-            </div>
-
-            <label class="m-1" for="validationDefaultUsername">Overlap fraction</label>
-            <div class="input-group">
-              <input type="number" step="0.01" min="0" max="1" class="form-control" id="overlap" aria-describedby="inputGroupPrepend2" value="0.25" required>
-              <div class="input-group-prepend">
-                  <span class="input-group-text" id="overlap-thickness">3</span>
-                  <span class="input-group-text">mm</span>
-              </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary my-3" value="Draw">Draw</button>
-          </form>
-
-          <div class="">
-            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="dxfDownload()">Download DXF</button>
-            <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="svgDownload()">Download SVG</button>
-          </div>
-        </div>
-      </nav>
-
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-          <h1 class="h2">Plans</h1>
-        </div>
-
-        <!-- <canvas class="my-4 bg-light" id="canvas1" width="900" height="380"></canvas> -->
-        <!-- <canvas id="canvas1" width="400" height="400"></canvas> -->
-        <div class="m-4 border col-10" id="canvas">
-        </div>
-      </main>
+  <aside>
+    <div class="btn-group btn-group-block m-2">
+        <button class="btn btn-sm active" onclick="toMillimeters()">Millimeters</button>
+        <button class="btn btn-sm" onclick="toInches()">Inches</button>
     </div>
-  </div>
+    <form>
+        <h6 class="m-2 sidebar-heading">Exterior dimensions</h6>
+        <div class="input-group m-2">
+            <span class="input-group-addon">Width</span>
+            <input type="number" id="width" class="form-input dimensional" min="0" step="any" value="800">
+            <span class="input-group-addon units">mm</span>
+        </div>
+        <div class="input-group m-2">
+            <span class="input-group-addon">Height</span>
+            <input type="number" min="0" step="any" class="form-input dimensional" value="350" id="height">
+            <span class="input-group-addon units">mm</span>
+        </div>
+        <div class="input-group m-2">
+            <span class="input-group-addon">Depth</span>
+            <input type="number" min="0" step="any" class="form-input dimensional" value="200" id="depth">
+            <span class="input-group-addon units">mm</span>
+        </div>
+        <div class="input-group m-2">
+            <span class="input-group-addon">Thickness</span>
+            <input type="number" min="0" step="0.001" class="form-input dimensional" value="12" id="thickness">
+            <span class="input-group-addon units">mm</span>
+        </div>
+        <h6 class="m-2 sidebar-heading">Customizations</h6>
+        <div class="input-group m-2">
+            <span class="input-group-addon">Tabs count</span>
+            <input type="number" min="0" step="any" class="form-input" value="3" id="tabs">
+            <span class="input-group-addon units">mm</span>
+        </div>
+        <div class="input-group m-2">
+            <span class="input-group-addon">Bone Radius</span>
+            <input type="number" min="0" step="0.001" class="form-input dimensional" value="3.5" id="radius">
+            <span class="input-group-addon units">mm</span>
+        </div>
+        <div class="input-group m-2">
+            <span class="input-group-addon">Clearance</span>
+            <input type="number" min="0" max="1" step="0.001" class="form-input dimensional" value="0.05" id="clearance">
+            <span class="input-group-addon units">mm</span>
+        </div>
+        <div class="input-group m-2">
+            <span class="input-group-addon">Overlap Fraction</span>
+            <input type="number" min="0" max="1" step="0.01" class="form-input" value="0.25" id="overlap">
+            <span class="input-group-addon units" id="overlap-thickness">3</span>
+            <span class="input-group-addon units">mm</span>
+        </div>
+        <button type="submit" class="btn m-2">Draw</button>
+    </form>
+
+    <div class="m-1 btn-group btn-group-block">
+        <button class="btn m-1" onclick="dxfDownload()">Download DXF</button>
+        <button class="btn m-1" onclick="svgDownload()">Download SVG</button>
+    </div>
+</aside>
+<header id="header1"></header>
+<header id="header2"></header>
+<main class="">
+  <div class="bg-light-purple m-2 p-2" id="canvas"></div>
+</main>
+<footer></footer>
 
 
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/makerjs@0/target/js/browser.maker.js"></script>
   <script src="js/jsjoints.js"></script>
   <!-- <script src="http://maker.js.org/target/js/browser.maker.js" type="text/javascript"></script> -->

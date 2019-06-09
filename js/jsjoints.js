@@ -13,27 +13,30 @@ addEventListener('change', () => {
 addEventListener('keyup', () => {
     canvasUpdate();
 });
+$(".btn-group > .btn").click(function(){
+    $(this).addClass("active").siblings().removeClass("active");
+});
 
 function readInputs() {
     plan.width = parseFloat(document.getElementById("width").value);
     plan.height = parseFloat(document.getElementById("height").value);
     plan.depth = parseFloat(document.getElementById("depth").value);
     plan.thickness = parseFloat(document.getElementById("thickness").value);
-    plan.fingerCount = parseInt(document.getElementById("fingers").value);
+    plan.fingerCount = parseInt(document.getElementById("tabs").value);
+    plan.boneRadius = parseFloat(document.getElementById("radius").value);
     plan.clearance = parseFloat(document.getElementById("clearance").value);
     plan.R = parseFloat(document.getElementById("overlap").value);
     plan.tabLength = (1 - plan.R) * plan.thickness;
     plan.thinWall = plan.R * plan.thickness;
     plan.tongeWidth = plan.height / (2 * plan.fingerCount) - plan.clearance;
     plan.grooveWidth = plan.tongeWidth + 2 * plan.clearance;
-    plan.boneRadius = parseFloat(document.getElementById("radius").value);
 }
 
 function canvasUpdate() {
     readInputs();
     updateThickness();
     var model = buildDrawing();
-    var options = {svgAttrs: {width:'100%', height: '100%'}};
+    var options = {svgAttrs: {width:'100%', height:'30em'}};
     var svg = makerjs.exporter.toSVG(model, options);
     document.getElementById('canvas').innerHTML = svg;
 }
@@ -81,7 +84,6 @@ function front() {
             'verticalLinesTonges': vlinesTonges
         }
     };
-    // makerjs.model.center(model, true, false);
     var chain1 = makerjs.model.findSingleChain(modelLeft);
     var dogbones1 = makerjs.chain.dogbone(chain1, { right: plan.boneRadius});
     modelLeft.models.bones = dogbones1;
@@ -136,7 +138,6 @@ function side() {
             'verticalLinesTonges': vlinesTonges
         }
     };
-    // makerjs.model.center(model, true, false);
     var chain1 = makerjs.model.findSingleChain(modelLeft);
     var dogbones1 = makerjs.chain.dogbone(chain1, { right: plan.boneRadius});
     modelLeft.models.bones = dogbones1;
@@ -158,7 +159,7 @@ function side() {
             'box': box
         }
     };
-    //call originate before calling simplify:
+    //we have to call originate before calling simplify:
     makerjs.model.originate(model);
     makerjs.model.simplify(model);
     return model;
@@ -185,11 +186,11 @@ function dxfDownload() {
 }
 
 function toMillimeters() {
-    var elements = document.getElementsByClassName("input-group-text");
-    for(var i=0; i<elements.length; i++) {
-        elements[i].innerHTML = "mm";
-    }
+    var elements = document.getElementsByClassName("units");
     if (currentUnits == "in") {
+        for(var i=0; i<elements.length; i++) {
+            elements[i].innerHTML = "mm";
+        }
         elements = document.getElementsByClassName("dimensional");
         for(var i=0; i<elements.length; i++) {
             var n = elements[i].value * 25.4;
@@ -201,7 +202,7 @@ function toMillimeters() {
 }
 
 function toInches() {
-    var elements = document.getElementsByClassName("input-group-text");
+    var elements = document.getElementsByClassName("units");
     for(i=0; i<elements.length; i++) {
         elements[i].innerHTML = "in";
     }
