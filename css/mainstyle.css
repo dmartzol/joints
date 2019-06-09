@@ -2,9 +2,9 @@ body {
   font-size: .875rem;
 }
 
-#blueprint-canvas {
-  background-color: #3177C6;
+#canvas {
   margin-bottom: 1em;
+  /* height: 100%; */
   /* overflow: hidden; */
 }
 

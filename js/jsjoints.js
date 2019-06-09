@@ -7,12 +7,10 @@ addEventListener('submit', (evt) => {
     evt.preventDefault();
     canvasUpdate();
 });
-addEventListener('change', (evt) => {
-    // evt.preventDefault();
+addEventListener('change', () => {
     canvasUpdate();
 });
-addEventListener('keyup', (evt) => {
-    // evt.preventDefault();
+addEventListener('keyup', () => {
     canvasUpdate();
 });
 
@@ -35,10 +33,9 @@ function canvasUpdate() {
     readInputs();
     updateThickness();
     var model = buildDrawing();
-    var svg = makerjs.exporter.toSVG(model);
-    console.log(svg);
+    var options = {svgAttrs: {width:'100%', height: '100%'}};
+    var svg = makerjs.exporter.toSVG(model, options);
     document.getElementById('canvas').innerHTML = svg;
-    // document.getElementById('canvas').setAttribute("width", "100%");
 }
 
 function buildDrawing() {
