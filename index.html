@@ -26,39 +26,39 @@
         </div>
         <div class="input-group m-2">
             <span class="input-group-addon">Height</span>
-            <input type="number" min="0" step="any" class="form-input dimensional" value="350" id="height">
+            <input type="number" id="height" class="form-input dimensional" min="0" step="any" value="350">
             <span class="input-group-addon units">mm</span>
         </div>
         <div class="input-group m-2">
             <span class="input-group-addon">Depth</span>
-            <input type="number" min="0" step="any" class="form-input dimensional" value="200" id="depth">
+            <input type="number" id="depth" class="form-input dimensional" min="0" step="any" value="200">
             <span class="input-group-addon units">mm</span>
         </div>
         <div class="input-group m-2">
             <span class="input-group-addon">Thickness</span>
-            <input type="number" min="0" step="0.001" class="form-input dimensional" value="12" id="thickness">
+            <input type="number" id="thickness" class="form-input dimensional" min="0" step="0.001" value="12">
             <span class="input-group-addon units">mm</span>
         </div>
         <h6 class="m-2 sidebar-heading">Customizations</h6>
         <div class="input-group m-2">
             <span class="input-group-addon">Tabs count</span>
-            <input type="number" min="0" step="any" class="form-input" value="3" id="tabs">
+            <input type="number" id="tabs" class="form-input" min="0" step="any" value="3">
             <span class="input-group-addon units">mm</span>
         </div>
         <div class="input-group m-2">
             <span class="input-group-addon">Bone Radius</span>
-            <input type="number" min="0" step="0.001" class="form-input dimensional" value="3.5" id="radius">
+            <input type="number" id="radius" class="form-input dimensional" min="0" step="0.001" value="3.5">
             <span class="input-group-addon units">mm</span>
         </div>
         <div class="input-group m-2">
             <span class="input-group-addon">Clearance</span>
-            <input type="number" min="0" max="1" step="0.001" class="form-input dimensional" value="0.05" id="clearance">
+            <input type="number" id="clearance" class="form-input dimensional" min="0" max="1" step="0.001" value="0.05">
             <span class="input-group-addon units">mm</span>
         </div>
         <div class="input-group m-2">
             <span class="input-group-addon">Overlap Fraction</span>
-            <input type="number" min="0" max="1" step="0.01" class="form-input" value="0.25" id="overlap">
-            <span class="input-group-addon units" id="overlap-thickness">3</span>
+            <input type="number" id="overlap" class="form-input" min="0" max="1" step="0.01" value="0.25">
+            <span id="overlap-thickness" class="input-group-addon units">3</span>
             <span class="input-group-addon units">mm</span>
         </div>
         <button type="submit" class="btn m-2">Draw</button>
