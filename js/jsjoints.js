@@ -13,9 +13,9 @@ addEventListener('change', () => {
 addEventListener('keyup', () => {
     canvasUpdate();
 });
-$(".btn-group > .btn").click(function(){
-    $(this).addClass("active").siblings().removeClass("active");
-});
+$('.btn-group').on('click', '.btn', function() {
+    $(this).addClass('active').siblings().removeClass('active');
+  });
 
 function readInputs() {
     plan.width = parseFloat(document.getElementById("width").value);
@@ -201,12 +201,12 @@ function toMillimeters() {
     canvasUpdate();
 }
 
-function toInches() {
+function toInches(button) {
     var elements = document.getElementsByClassName("units");
-    for(i=0; i<elements.length; i++) {
-        elements[i].innerHTML = "in";
-    }
     if (currentUnits == "mm") {
+        for(i=0; i<elements.length; i++) {
+            elements[i].innerHTML = "in";
+        }
         elements = document.getElementsByClassName("dimensional");
         for(var i=0; i<elements.length; i++) {
             var n = elements[i].value / 25.4;
