@@ -23,7 +23,6 @@ Just visit [this link](https://www.danielmartinezolivas.com/joints/) and input y
 
 - [X] Make it work
 - [X] Usage
+- [X] Fix canvas scaling
 - [ ] Test it
-- [ ] Fix canvas scaling
-- [ ] Do something about units
 - [ ] Add reset button
