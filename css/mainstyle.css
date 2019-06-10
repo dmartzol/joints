@@ -6,7 +6,7 @@ body {
   margin: 0;
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: repeat(auto, 5);
+  grid-template-rows: 10% auto 10%;
   grid-template-areas:
       "header1"
       "sidebar"
@@ -15,26 +15,24 @@ body {
 
 aside {
   grid-area: sidebar;
-  background-color: #F7F7F7;
 }
 
 #header1 {
   grid-area: header1;
-  background-color: #232161;
+  display: flex;
+  align-items: center;
 }
+
 #header2 {
   grid-area: header2;
-  background-color: #4B48D5;
 }
 
 main {
   grid-area: main;
-  background-color: white;
 }
 
 footer {
   grid-area: footer;
-  background-color: #232161;
 }
 
 @media only screen and (min-width: 900px) {
@@ -57,6 +55,21 @@ footer {
   text-transform: uppercase;
 }
 
-.bg-light-purple {
-  background-color: #EEEEFB;
+/* Footer */
+.logo {
+  height: 100%;
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+
+/* Colors */
+.bg-dark-purple {
+  background-color: #232161;
+}
+.bg-black {
+  background-color: #000000;
+}
+.bg-red {
+  background-color: red;
 }

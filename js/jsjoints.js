@@ -23,7 +23,8 @@ function readInputs() {
     plan.depth = parseFloat(document.getElementById("depth").value);
     plan.thickness = parseFloat(document.getElementById("thickness").value);
     plan.fingerCount = parseInt(document.getElementById("tabs").value);
-    plan.boneRadius = parseFloat(document.getElementById("radius").value);
+    plan.boneDiameter = parseFloat(document.getElementById("diameter").value);
+    plan.boneRadius = plan.boneDiameter / 2;
     plan.clearance = parseFloat(document.getElementById("clearance").value);
     plan.R = parseFloat(document.getElementById("overlap").value);
     plan.tabLength = (1 - plan.R) * plan.thickness;
@@ -36,13 +37,13 @@ function canvasUpdate() {
     readInputs();
     updateThickness();
     var model = buildDrawing();
-    var options = {svgAttrs: {width:'100%', height:'30em'}};
+    var options = {svgAttrs: {width:'100%', height:'30em'}, stroke: 'white'};
     var svg = makerjs.exporter.toSVG(model, options);
     document.getElementById('canvas').innerHTML = svg;
 }
 
 function buildDrawing() {
-    var margin = 20;
+    var margin = 0.2 * plan.height;
     var fronto = front();
     var myDrawing = {
         models: {

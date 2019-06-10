@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <aside>
+  <aside class="bg-secondary">
     <div class="btn-group btn-group-block m-2">
         <button type="button" class="btn btn-sm active" onclick="toMillimeters()">Millimeters</button>
         <button type="button" class="btn btn-sm" onclick="toInches()">Inches</button>
@@ -47,8 +47,8 @@
             <span class="input-group-addon units">mm</span>
         </div>
         <div class="input-group m-2">
-            <span class="input-group-addon">Bone Radius</span>
-            <input type="number" id="radius" class="form-input dimensional" min="0" step="0.001" value="3.5">
+            <span class="input-group-addon">Bone Diameter</span>
+            <input type="number" id="diameter" class="form-input dimensional" min="0" step="0.001" value="7">
             <span class="input-group-addon units">mm</span>
         </div>
         <div class="input-group m-2">
@@ -57,7 +57,7 @@
             <span class="input-group-addon units">mm</span>
         </div>
         <div class="input-group m-2">
-            <span class="input-group-addon">Overlap Fraction</span>
+            <span class="input-group-addon">Overlap Ratio</span>
             <input type="number" id="overlap" class="form-input" min="0" max="1" step="0.01" value="0.25">
             <span id="overlap-thickness" class="input-group-addon units">3</span>
             <span class="input-group-addon units">mm</span>
@@ -70,12 +70,21 @@
         <button class="btn m-1" onclick="svgDownload()">Download SVG</button>
     </div>
 </aside>
-<header id="header1"></header>
-<header id="header2"></header>
-<main class="">
-  <div class="bg-light-purple m-2 p-2" id="canvas"></div>
+<!-- HEADER 1 -->
+<header id="header1" class="bg-primary p-0">
+    <h2 class="text-secondary p-centered">Hidden Box Joints</h2>
+</header>
+<!-- HEADER 2 -->
+<header id="header2" class="bg-primary"></header>
+<!-- MAIN AREA -->
+<main class="bg-black p-2">
+  <div class="m-2 p-2" id="canvas"></div>
 </main>
-<footer></footer>
+<!-- FOOTER -->
+<footer class="bg-primary px-2">
+    <a href="https://maker.js.org"><img src="images/makerjs-blue.png" class="logo mx-1 float-right" alt="Logo for Makerjs"></a>
+    <h2 class="logo mx-1 float-right">Built with:</h2>
+</footer>
 
 
 
