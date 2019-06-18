@@ -15,7 +15,15 @@ addEventListener('keyup', () => {
 });
 $('.btn-group').on('click', '.btn', function() {
     $(this).addClass('active').siblings().removeClass('active');
-  });
+});
+$("#add-handle").click(function(){
+    $('#slot-length').prop('disabled', function(i, v) { return !v; });
+    $('#slot-diameter').prop('disabled', function(i, v) { return !v; });
+});
+$("#add-bottom").click(function(){
+    $('#bottom-thickness').prop('disabled', function(i, v) { return !v; });
+    $('#bottom-height').prop('disabled', function(i, v) { return !v; });
+});
 
 function readInputs() {
     plan.width = parseFloat(document.getElementById("width").value);
@@ -31,6 +39,13 @@ function readInputs() {
     plan.thinWall = plan.R * plan.thickness;
     plan.tongeWidth = plan.height / (2 * plan.fingerCount) - plan.clearance;
     plan.grooveWidth = plan.tongeWidth + 2 * plan.clearance;
+    plan.slotLength = parseFloat(document.getElementById("slot-length").value);
+    plan.slotDiameter = parseFloat(document.getElementById("slot-diameter").value);
+    plan.bottomThickness = parseFloat(document.getElementById("bottom-thickness").value);
+    plan.bottomHeigth = parseFloat(document.getElementById("bottom-height").value);
+    plan.handleDisabled = document.getElementById("slot-diameter").disabled;
+    plan.bottomDisabled = document.getElementById("bottom-thickness").disabled;
+    plan.slotDistance = plan.slotDiameter * 2;
 }
 
 function canvasUpdate() {
@@ -44,11 +59,10 @@ function canvasUpdate() {
 
 function buildDrawing() {
     var margin = 0.2 * plan.height;
-    var fronto = front();
     var myDrawing = {
         models: {
             'side': side(),
-            'front': makerjs.model.moveRelative(fronto, [0, plan.height + margin]),
+            'front': makerjs.model.moveRelative(front(), [0, plan.height + margin]),
         }
     };
     // myDrawing.units = makerjs.units.Millimeter;
@@ -106,6 +120,12 @@ function front() {
             'box': box
         }
     };
+    if (!plan.handleDisabled) {
+        model.models["handle"] = buildHandle("front");
+    }
+    if (!plan.bottomDisabled) {
+        model.models["bottom"] = buildBottom("front");
+    }
     return model;
 }
 
@@ -160,9 +180,48 @@ function side() {
             'box': box
         }
     };
+    if (!plan.handleDisabled) {
+        model.models["handle"] = buildHandle("side");
+    }
     //we have to call originate before calling simplify:
     makerjs.model.originate(model);
     makerjs.model.simplify(model);
+    return model;
+}
+
+function buildHandle(type) {
+    if (type == "front") {
+        var width = plan.width;
+    } else {
+        var width = plan.depth;
+    }
+    var handleY = plan.height - plan.slotDistance;
+    var origin = [width/2 - plan.slotLength/2, handleY];
+    var end = [width/2 + plan.slotLength/2, handleY];
+    var radius = plan.slotDiameter / 2;
+    var slot = new makerjs.models.Slot(origin, end, radius);
+    var model = {
+        models: {
+            'handle': slot,
+        }
+    };
+    return model;
+}
+
+function buildBottom(type) {
+    if (type == "front") {
+        var width = plan.width;
+    } else {
+        var width = plan.depth;
+    }
+    var origin = [plan.tabLength + plan.thinWall, plan.bottomHeigth];
+    var end = [width - plan.tabLength - plan.thinWall, plan.bottomHeigth];
+    var line = new makerjs.paths.Line([0, 0], [100, 100]);
+    var model = {
+        models: {
+            'linenene': line,
+        }
+    };
     return model;
 }
 

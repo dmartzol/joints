@@ -62,6 +62,34 @@
             <span id="overlap-thickness" class="input-group-addon units">3</span>
             <span class="input-group-addon units">mm</span>
         </div>
+        <!-- form switch control -->
+        <div class="input-group m-2">
+            <label class="form-switch">
+                <input type="checkbox" id="add-handle">
+                <i class="form-icon"></i> Add handle
+            </label>
+        </div>
+        <div class="input-group m-2">
+            <span class="input-group-addon">Length</span>
+            <input type="number" id="slot-length" class="form-input dimensional handle" min="0" step="any" value="75.0" disabled>
+            <span class="input-group-addon">Diameter</span>
+            <input type="number" id="slot-diameter" class="form-input dimensional handle" min="0" step="any" value="25" disabled>
+            <span class="input-group-addon units">mm</span>
+        </div>
+        <!-- form switch control -->
+        <div class="input-group m-2">
+            <label class="form-switch">
+                <input type="checkbox" id="add-bottom">
+                <i class="form-icon"></i> Add bottom groove
+            </label>
+        </div>
+        <div class="input-group m-2">
+            <span class="input-group-addon">Thickness</span>
+            <input type="number" id="bottom-thickness" class="form-input dimensional handle" min="0" value="6.5" step="any" disabled>
+            <span class="input-group-addon">Height</span>
+            <input type="number" id="bottom-height" class="form-input dimensional handle" min="0" value="20" step="any" disabled>
+            <span class="input-group-addon units">mm</span>
+        </div>
         <button type="submit" class="btn m-2">Draw</button>
     </form>
 
