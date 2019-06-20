@@ -19,6 +19,7 @@ $('.btn-group').on('click', '.btn', function() {
 $("#add-handle").click(function(){
     $('#slot-length').prop('disabled', function(i, v) { return !v; });
     $('#slot-diameter').prop('disabled', function(i, v) { return !v; });
+    $('#slot-distance').prop('disabled', function(i, v) { return !v; });
 });
 $("#add-bottom").click(function(){
     $('#bottom-thickness').prop('disabled', function(i, v) { return !v; });
@@ -42,10 +43,10 @@ function readInputs() {
     plan.slotLength = parseFloat(document.getElementById("slot-length").value);
     plan.slotDiameter = parseFloat(document.getElementById("slot-diameter").value);
     plan.bottomThickness = parseFloat(document.getElementById("bottom-thickness").value);
-    plan.bottomHeigth = parseFloat(document.getElementById("bottom-height").value);
+    plan.bottomHeight = parseFloat(document.getElementById("bottom-height").value);
     plan.handleDisabled = document.getElementById("slot-diameter").disabled;
     plan.bottomDisabled = document.getElementById("bottom-thickness").disabled;
-    plan.slotDistance = plan.slotDiameter * 2;
+    plan.slotDistance = document.getElementById("slot-distance").value;
 }
 
 function canvasUpdate() {
@@ -124,7 +125,7 @@ function front() {
         model.models["handle"] = buildHandle("front");
     }
     if (!plan.bottomDisabled) {
-        model.models["bottom"] = buildBottom("front");
+        model.models["bottomGroove"] = buildBottom("front");
     }
     return model;
 }
@@ -183,6 +184,9 @@ function side() {
     if (!plan.handleDisabled) {
         model.models["handle"] = buildHandle("side");
     }
+    if (!plan.bottomDisabled) {
+        model.models["bottomGroove"] = buildBottom("side");
+    }
     //we have to call originate before calling simplify:
     makerjs.model.originate(model);
     makerjs.model.simplify(model);
@@ -211,17 +215,22 @@ function buildHandle(type) {
 function buildBottom(type) {
     if (type == "front") {
         var width = plan.width;
+        var thinWall = plan.thinWall;
     } else {
-        var width = plan.depth;
+        var width = plan.depth - 2 * plan.thinWall;
+        var thinWall = 0;
     }
-    var origin = [plan.tabLength + plan.thinWall, plan.bottomHeigth];
-    var end = [width - plan.tabLength - plan.thinWall, plan.bottomHeigth];
-    var line = new makerjs.paths.Line([0, 0], [100, 100]);
+    var lineLength = width - 2 * (plan.tabLength + thinWall);
+    var line = new makerjs.paths.Line([0, 0], [lineLength, 0]);
+    var lines = makerjs.layout.cloneToColumn(line, 2, plan.bottomThickness);
+    makerjs.model.moveRelative(lines, [plan.tabLength + thinWall, plan.bottomHeight]);
+    console.log(line);
     var model = {
         models: {
-            'linenene': line,
+            'bottomGroove': lines,
         }
     };
+    console.log(model);
     return model;
 }
 
