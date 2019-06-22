@@ -40,13 +40,13 @@ function readInputs() {
     plan.thinWall = plan.R * plan.thickness;
     plan.tongeWidth = plan.height / (2 * plan.fingerCount) - plan.clearance;
     plan.grooveWidth = plan.tongeWidth + 2 * plan.clearance;
-    plan.slotLength = parseFloat(document.getElementById("slot-length").value);
     plan.slotDiameter = parseFloat(document.getElementById("slot-diameter").value);
+    plan.slotLength = parseFloat(document.getElementById("slot-length").value) - plan.slotDiameter;
+    plan.slotDistance = document.getElementById("slot-distance").value;
     plan.bottomThickness = parseFloat(document.getElementById("bottom-thickness").value);
     plan.bottomHeight = parseFloat(document.getElementById("bottom-height").value);
     plan.handleDisabled = document.getElementById("slot-diameter").disabled;
     plan.bottomDisabled = document.getElementById("bottom-thickness").disabled;
-    plan.slotDistance = document.getElementById("slot-distance").value;
 }
 
 function canvasUpdate() {
@@ -199,9 +199,10 @@ function buildHandle(type) {
     } else {
         var width = plan.depth;
     }
-    var handleY = plan.height - plan.slotDistance;
-    var origin = [width/2 - plan.slotLength/2, handleY];
-    var end = [width/2 + plan.slotLength/2, handleY];
+    var handleY = plan.height - plan.slotDiameter/2 - plan.slotDistance;
+    console.log(plan.slotDistance)
+    var origin = [(width - plan.slotLength)/2, handleY];
+    var end = [(width + plan.slotLength)/2, handleY];
     var radius = plan.slotDiameter / 2;
     var slot = new makerjs.models.Slot(origin, end, radius);
     var model = {
@@ -240,7 +241,7 @@ function svgDownload() {
     var hiddenElement = document.createElement('a');
     hiddenElement.href = 'data:attachment/text,' + encodeURI(svg);
     hiddenElement.target = '_blank';
-    hiddenElement.download = 'test.svg';
+    hiddenElement.download = 'hidden-joints-box.svg';
     hiddenElement.click();
 }
 
@@ -250,7 +251,7 @@ function dxfDownload() {
     var hiddenElement = document.createElement('a');
     hiddenElement.href = 'data:attachment/text,' + encodeURI(dxf);
     hiddenElement.target = '_blank';
-    hiddenElement.download = 'test.dxf';
+    hiddenElement.download = 'hidden-joints-box.dxf';
     hiddenElement.click();
 }
 

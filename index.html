@@ -51,13 +51,13 @@
             <input type="number" id="diameter" class="form-input dimensional" min="0" step="0.001" value="7">
             <span class="input-group-addon units">mm</span>
         </div>
-        <div class="input-group m-2">
+        <div class="input-group m-2" title="This is the clearance you will have on each side of every finger">
             <span class="input-group-addon">Clearance</span>
             <input type="number" id="clearance" class="form-input dimensional" min="0" max="1" step="0.001" value="0.05">
             <span class="input-group-addon units">mm</span>
         </div>
-        <div class="input-group m-2">
-            <span class="input-group-addon">Overlap Ratio</span>
+        <div class="input-group m-2" title="Fraction(between 0 and 1) of the thickness you want to use to hide the tabs" >
+            <span class="input-group-addon" >Overlap Ratio</span>
             <input type="number" id="overlap" class="form-input" min="0" max="1" step="0.01" value="0.25">
             <span id="overlap-thickness" class="input-group-addon units">3</span>
             <span class="input-group-addon units">mm</span>
@@ -70,12 +70,12 @@
             </label>
         </div>
         <div class="input-group m-2">
-            <span class="input-group-addon">L</span>
-            <input type="number" id="slot-length" class="form-input dimensional handle" min="0" step="any" value="75.0" disabled>
-            <span class="input-group-addon">H</span>
-            <input type="number" id="slot-diameter" class="form-input dimensional handle" min="0" step="any" value="25" disabled>
-            <span class="input-group-addon">d</span>
-            <input type="number" id="slot-distance" class="form-input dimensional handle" min="0" step="any" value="25" disabled>
+            <span class="input-group-addon" title="Total length of the slot">L</span>
+            <input type="number" id="slot-length" class="form-input dimensional handle" title="Total length of the slot" min="0" step="any" value="75.0" disabled>
+            <span class="input-group-addon" title="Diameter of slot">d</span>
+            <input type="number" id="slot-diameter" class="form-input dimensional handle" title="Diameter of slot" min="0" step="any" value="25" disabled>
+            <span class="input-group-addon" title="Space between slot and top">H</span>
+            <input type="number" id="slot-distance" class="form-input dimensional handle" title="Space between slot and top" min="0" step="any" value="25" disabled>
             <span class="input-group-addon units">mm</span>
         </div>
         <!-- form switch control -->
@@ -102,7 +102,7 @@
 </aside>
 <!-- HEADER 1 -->
 <header id="header1" class="bg-primary p-0">
-    <h2 class="text-secondary p-centered">Hidden Box Joints</h2>
+    <h4 class="text-secondary p-centered">Hidden Box Joints</h4>
 </header>
 <!-- HEADER 2 -->
 <header id="header2" class="bg-primary"></header>
